@@ -1,7 +1,8 @@
-import { loginSchema } from "./login-schema";
 import type { LoginSchema } from "./login-schema";
 
 import { describe, it, expect } from "vitest";
+
+import { loginSchema } from "./login-schema";
 describe("loginSchema", () => {
   it("should validate a valid login schema", () => {
     const validLogin: LoginSchema = {

@@ -1,4 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
+import axios from "axios";
+
 import { login } from "../api/login";
 import { LoginSchema } from "../schemas";
 
@@ -9,19 +11,14 @@ describe("/api/login", () => {
       password: "password123",
     };
 
-    const fetchSpy = vi.spyOn(window, "fetch");
-    fetchSpy.mockResolvedValueOnce(new Response());
+    const axiosPostSpy = vi.spyOn(axios, "post");
+
+    axiosPostSpy.mockResolvedValueOnce({});
 
     await login(credentials);
 
-    expect(fetchSpy).toHaveBeenCalledWith("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
+    expect(axiosPostSpy).toHaveBeenCalledWith("/api/login", credentials);
 
-    fetchSpy.mockRestore();
+    axiosPostSpy.mockRestore();
   });
 });

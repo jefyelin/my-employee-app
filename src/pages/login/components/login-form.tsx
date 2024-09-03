@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
-import { loginSchema, LoginSchema } from "../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LogIn } from "lucide-react";
+
+import { loginSchema, LoginSchema } from "../schemas";
+
 import { Input } from "@/components/common/input";
 import { SubmitButton } from "@/components/common/submit-button";
 
@@ -22,18 +25,22 @@ export const LoginForm = ({ isSubmitPending, onSubmit }: LoginFormProps) => {
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-3">
         <Input
+          errorMessage={errors.username?.message}
           label="Username"
           register={register("username")}
-          errorMessage={errors.username?.message}
         />
         <Input
-          label="Password"
-          type="password"
-          register={register("password")}
           errorMessage={errors.password?.message}
+          label="Password"
+          register={register("password")}
+          type="password"
         />
       </div>
-      <SubmitButton label="Login" isLoading={isSubmitPending} />
+      <SubmitButton
+        icon={<LogIn size={16} />}
+        isLoading={isSubmitPending}
+        label="Login"
+      />
     </form>
   );
 };

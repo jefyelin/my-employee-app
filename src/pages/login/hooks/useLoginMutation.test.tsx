@@ -1,7 +1,8 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import { useLoginMutation } from "./useLoginMutation";
 import { describe, expect, it, vi } from "vitest";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { useLoginMutation } from "./useLoginMutation";
 
 vi.mock("../api", () => ({
   login: vi.fn(),

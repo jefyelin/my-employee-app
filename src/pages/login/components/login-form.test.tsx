@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { LoginForm } from "./login-form";
 import userEvent from "@testing-library/user-event";
+
+import { LoginForm } from "./login-form";
 
 describe("LoginForm", () => {
   it("should render correctly", () => {

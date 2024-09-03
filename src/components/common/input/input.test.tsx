@@ -1,9 +1,11 @@
+import type { InputProps } from "./input";
+
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Input } from "./input";
-import type { InputProps } from "./input";
 import { describe, expect, it } from "vitest";
 import { useForm } from "react-hook-form";
+
+import { Input } from "./input";
 
 const CustomInputRender = (props: Omit<InputProps, "register">) => {
   const { register } = useForm({ mode: "onChange" });
@@ -30,7 +32,7 @@ describe("Input", () => {
   });
 
   it("should render with an error message", () => {
-    render(<CustomInputRender label="Email" errorMessage="Invalid email" />);
+    render(<CustomInputRender errorMessage="Invalid email" label="Email" />);
 
     const errorMessage = screen.getByText("Invalid email");
 

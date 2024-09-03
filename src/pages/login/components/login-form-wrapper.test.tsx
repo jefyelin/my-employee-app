@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { LoginFormWrapper } from "./login-form-wrapper";
 import { render, screen } from "@testing-library/react";
+
+import { LoginFormWrapper } from "./login-form-wrapper";
 
 describe("LoginFormWrapper", () => {
   it("should render the children and the title with welcome message", () => {

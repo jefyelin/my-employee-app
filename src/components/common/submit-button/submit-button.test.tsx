@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+
 import { SubmitButton } from "./submit-button";
 
 describe("SubmitButton", () => {
@@ -15,7 +16,7 @@ describe("SubmitButton", () => {
   });
 
   it("should render the button with the loading state", () => {
-    render(<SubmitButton label="Submit" isLoading={true} />);
+    render(<SubmitButton isLoading={true} label="Submit" />);
 
     const loadingButton = screen.getByRole("button", {
       name: "Loading Loading",
@@ -28,7 +29,7 @@ describe("SubmitButton", () => {
   it("should render the button without the loading state", () => {
     const label = "Submit";
 
-    render(<SubmitButton label={label} isLoading={false} />);
+    render(<SubmitButton isLoading={false} label={label} />);
 
     const button = screen.getByRole("button", { name: label });
 

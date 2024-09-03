@@ -29,7 +29,7 @@ export const useTheme = (defaultTheme?: Theme) => {
     localStorage.setItem(ThemeProps.key, theme);
     document.documentElement.classList.remove(
       ThemeProps.light,
-      ThemeProps.dark,
+      ThemeProps.dark
     );
     document.documentElement.classList.add(theme);
     setTheme(theme);

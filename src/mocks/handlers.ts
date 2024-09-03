@@ -32,7 +32,50 @@ export const handlers = [
 
     if (username === "admin" && password === "admin123") {
       return HttpResponse.json(
-        { message: "Login successful" },
+        {
+          user: {
+            id: "1",
+            type: "admin",
+          },
+        },
+        { status: 200 }
+      );
+    }
+
+    if (username === "employee" && password === "employee123") {
+      return HttpResponse.json(
+        {
+          user: {
+            id: "2",
+            type: "employee",
+          },
+          employeeDetails: {
+            firstName: "John",
+            lastName: "Doe",
+            birthdate: new Date("1990-01-01"),
+            jobTitle: "Software Engineer",
+            startDate: new Date("2022-01-01"),
+            photoURL:
+              "https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
+            addresses: [
+              {
+                id: "1",
+                type: "home",
+                address: "1234 Elm St.",
+              },
+              {
+                id: "2",
+                type: "mailing",
+                address: "5678 Oak St.",
+              },
+              {
+                id: "3",
+                type: "custom",
+                address: "91011 Pine St.",
+              },
+            ],
+          },
+        },
         { status: 200 }
       );
     }

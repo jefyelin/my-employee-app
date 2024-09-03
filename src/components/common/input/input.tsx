@@ -20,8 +20,8 @@ export const Input = ({
       errorMessage={errorMessage}
       isInvalid={Boolean(errorMessage)}
       label={label}
-      type={type}
       size="sm"
+      type={type}
     />
   );
 };
