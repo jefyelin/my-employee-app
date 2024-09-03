@@ -1,4 +1,4 @@
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse, delay } from "msw";
 
 export const handlers = [
   http.get("/api/employees", () => {
@@ -20,6 +20,26 @@ export const handlers = [
         },
       ],
       { status: 200 }
+    );
+  }),
+  http.post("/api/login", async ({ request }) => {
+    await delay(1000);
+
+    const { username, password } = (await request.json()) as {
+      username: string;
+      password: string;
+    };
+
+    if (username === "admin" && password === "admin123") {
+      return HttpResponse.json(
+        { message: "Login successful" },
+        { status: 200 }
+      );
+    }
+
+    return HttpResponse.json(
+      { message: "Invalid username or password" },
+      { status: 401 }
     );
   }),
 ];
