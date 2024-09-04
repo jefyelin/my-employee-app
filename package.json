@@ -24,6 +24,7 @@
     "@nextui-org/divider": "^2.0.31",
     "@nextui-org/image": "^2.0.31",
     "@nextui-org/input": "2.2.4",
+    "@nextui-org/modal": "^2.0.39",
     "@nextui-org/pagination": "^2.0.35",
     "@nextui-org/select": "^2.2.5",
     "@nextui-org/spinner": "^2.0.33",

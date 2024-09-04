@@ -1,22 +1,37 @@
 import { Image } from "@nextui-org/image";
 
-import { LoginSchema } from "./schemas";
-import { LoginLayout } from "./layouts/login-layout";
-import { LoginForm } from "./components/login-form";
 import { LoginFormWrapper } from "./components";
+import { LoginForm } from "./components/login-form";
 import { useLoginMutation } from "./hooks";
 import { useValidateLogin } from "./hooks/useValidateLogin";
+import { LoginLayout } from "./layouts/login-layout";
+import { LoginSchema } from "./schemas";
 
 import loginBackground from "@/assets/login-background.jpg";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/modal";
+import { useEffect } from "react";
 
 export const LoginPage = () => {
-  const { mutate, isPending, data: response } = useLoginMutation();
+  const { mutate, isPending, data: response, isError } = useLoginMutation();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useValidateLogin(response);
 
   const onSubmit = (data: LoginSchema) => {
     mutate(data);
   };
+
+  useEffect(() => {
+    if (isError) {
+      onOpen();
+    }
+  }, [isError]);
 
   return (
     <LoginLayout>
@@ -30,6 +45,14 @@ export const LoginPage = () => {
           <LoginForm isSubmitPending={isPending} onSubmit={onSubmit} />
         </LoginFormWrapper>
       </div>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          <ModalHeader>Login Error</ModalHeader>
+          <ModalBody>
+            <p className="py-4">Invalid username or password</p>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </LoginLayout>
   );
 };
