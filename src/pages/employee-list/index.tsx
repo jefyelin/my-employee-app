@@ -10,17 +10,26 @@ import {
   TableRow,
 } from "@nextui-org/table";
 import { format } from "date-fns";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useEmployeesQuery } from "./hooks/useEmployeesQuery";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { useUserStore } from "@/stores";
+import {
+  EmployeeDetails,
+  useEmployeeDetailsStore,
+} from "@/stores/useEmployeeDetailsStore";
 import { Button } from "@nextui-org/button";
 import { LogOut, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const EmployeeList = () => {
-  // const { type, id } = useUserStore();
+  const { type, clearUser } = useUserStore();
+  const { setEmployeeDetails, clearEmployeeDetails } =
+    useEmployeeDetailsStore();
+  const navigate = useNavigate();
   const { data, isLoading } = useEmployeesQuery();
   const [page, setPage] = useState(1);
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "asc" });
@@ -76,6 +85,28 @@ export const EmployeeList = () => {
     });
   };
 
+  const handleLogout = () => {
+    clearEmployeeDetails();
+    clearUser();
+    navigate("/");
+  };
+
+  const handleClickItem = (item: EmployeeDetails) => {
+    setEmployeeDetails(item);
+
+    navigate(`/employee-details/edit`);
+  };
+
+  const handleAddNewUser = () => {
+    navigate("/new-employee");
+  };
+
+  useEffect(() => {
+    if (type !== "admin") {
+      navigate("/");
+    }
+  }, [type]);
+
   return (
     <div className="flex h-screen w-full items-center justify-center">
       <div className="m-3 flex max-h-[710px] w-full max-w-4xl flex-col gap-5 overflow-auto rounded-2xl bg-white p-8 shadow-md dark:bg-zinc-900">
@@ -87,7 +118,7 @@ export const EmployeeList = () => {
             type="button"
             variant="bordered"
             size="sm"
-            onClick={() => {}}
+            onClick={handleLogout}
           >
             <LogOut size={16} />
             Logout
@@ -108,7 +139,7 @@ export const EmployeeList = () => {
                   onChange={(page) => setPage(page)}
                 />
                 <div className="absolute left-0">
-                  <Button color="primary" size="sm">
+                  <Button color="primary" size="sm" onClick={handleAddNewUser}>
                     <Plus size={16} />
                     Add New Employee
                   </Button>
@@ -145,7 +176,13 @@ export const EmployeeList = () => {
             loadingContent={<Spinner size="lg" />}
           >
             {(item) => (
-              <TableRow key={item.id}>
+              <TableRow
+                className="cursor-pointer"
+                key={item.id}
+                onClick={() => {
+                  handleClickItem(item);
+                }}
+              >
                 {(columnKey) => (
                   <TableCell>
                     {columnKey === "startDate"

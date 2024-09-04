@@ -2,7 +2,7 @@ import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Chip } from "@nextui-org/chip";
 import { format } from "date-fns";
-import { LogOut, UserRoundPen } from "lucide-react";
+import { ArrowLeft, LogOut, UserRoundPen } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,7 @@ import { useUserStore } from "@/stores";
 import { useEmployeeDetailsStore } from "@/stores/useEmployeeDetailsStore";
 
 export const EmployeeDetailsPage = () => {
+  const { type: userType } = useUserStore();
   const { data, clearEmployeeDetails } = useEmployeeDetailsStore();
   const { clearUser } = useUserStore();
   const navigate = useNavigate();
@@ -37,6 +38,10 @@ export const EmployeeDetailsPage = () => {
     clearEmployeeDetails();
     clearUser();
     navigate("/");
+  };
+
+  const handleBackEmployeeList = () => {
+    navigate("/employee-list");
   };
 
   useEffect(() => {
@@ -93,16 +98,29 @@ export const EmployeeDetailsPage = () => {
           </ul>
         </div>
         <div className="flex w-full gap-2">
-          <Button
-            className="w-full"
-            color="secondary"
-            type="button"
-            variant="bordered"
-            onClick={handleLogout}
-          >
-            <LogOut size={16} />
-            Logout
-          </Button>
+          {userType === "admin" ? (
+            <Button
+              className="w-full"
+              color="secondary"
+              type="button"
+              variant="bordered"
+              onClick={handleBackEmployeeList}
+            >
+              <ArrowLeft size={16} />
+              Employee List
+            </Button>
+          ) : (
+            <Button
+              className="w-full"
+              color="secondary"
+              type="button"
+              variant="bordered"
+              onClick={handleLogout}
+            >
+              <LogOut size={16} />
+              Logout
+            </Button>
+          )}
           <Button
             className="w-full"
             color="secondary"

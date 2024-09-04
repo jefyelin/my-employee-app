@@ -5,6 +5,7 @@ import { EmployeeDetailsPageEdit } from "./pages/employee-details/edit";
 import { EmployeeDetailsPage } from "@/pages/employee-details/employee-details";
 import { EmployeeList } from "@/pages/employee-list";
 import { LoginPage } from "@/pages/login";
+import { NewEmployeePage } from "@/pages/new-employee/new-employee";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         element={<EmployeeDetailsPageEdit />}
         path="/employee-details/edit"
       />
+      <Route element={<NewEmployeePage />} path="/new-employee" />
     </Routes>
   );
 }

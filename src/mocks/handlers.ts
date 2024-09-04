@@ -83,4 +83,16 @@ export const handlers = [
       { status: 200 }
     );
   }),
+  http.post("/api/employees", async ({ request }) => {
+    await delay(1000);
+
+    const newEmployee = (await request.json()) as EmployeeDetails;
+
+    employees.push(newEmployee);
+
+    return HttpResponse.json(
+      { message: "Employee created successfully", id: newEmployee.id },
+      { status: 201 }
+    );
+  }),
 ];
