@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
 import { LoginFormWrapper } from "./login-form-wrapper";
 
@@ -9,7 +9,7 @@ describe("LoginFormWrapper", () => {
 
     expect(screen.getByText("Children Test")).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "MyEmployee" })
+      screen.getByRole("heading", { name: "| MyEmployee |" })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Nice to see you again" })

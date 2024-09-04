@@ -1,0 +1,1 @@
+export { EmployeeDetailsPageEdit } from "./edit";

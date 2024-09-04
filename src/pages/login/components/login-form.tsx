@@ -1,11 +1,11 @@
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LogIn } from "lucide-react";
+import { useForm } from "react-hook-form";
 
 import { loginSchema, LoginSchema } from "../schemas";
 
-import { Input } from "@/components/common/input";
-import { SubmitButton } from "@/components/common/submit-button";
+import { Input } from "@/components/input";
+import { SubmitButton } from "@/components/submit-button";
 
 interface LoginFormProps {
   isSubmitPending?: boolean;

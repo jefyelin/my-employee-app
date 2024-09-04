@@ -1,9 +1,10 @@
 import type { InputProps } from "./input";
 
+import { faker } from "@faker-js/faker";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
 import { useForm } from "react-hook-form";
+import { describe, expect, it } from "vitest";
 
 import { Input } from "./input";
 
@@ -39,13 +40,15 @@ describe("Input", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  it("should type john", async () => {
+  it("should type a text", async () => {
     render(<CustomInputRender label="Username" />);
 
     const input = screen.getByLabelText("Username");
 
-    await userEvent.type(input, "john");
+    const expectedValue = faker.name.firstName();
 
-    expect(input).toHaveValue("john");
+    await userEvent.type(input, expectedValue);
+
+    expect(input).toHaveValue(expectedValue);
   });
 });

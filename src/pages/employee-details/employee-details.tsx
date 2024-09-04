@@ -1,16 +1,17 @@
 import { Avatar } from "@nextui-org/avatar";
+import { Button } from "@nextui-org/button";
+import { Chip } from "@nextui-org/chip";
+import { format } from "date-fns";
+import { LogOut, UserRoundPen } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { format } from "date-fns";
-import { Button } from "@nextui-org/button";
-import { LogOut, UserRoundPen } from "lucide-react";
-import { Chip } from "@nextui-org/chip";
 
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { useUserStore } from "@/stores";
-import { Navbar } from "@/components/navbar";
 import { useEmployeeDetailsStore } from "@/stores/useEmployeeDetailsStore";
 
-export const EmployeeDetails = () => {
+export const EmployeeDetailsPage = () => {
   const { data, clearEmployeeDetails } = useEmployeeDetailsStore();
   const { clearUser } = useUserStore();
   const navigate = useNavigate();
@@ -49,13 +50,12 @@ export const EmployeeDetails = () => {
   }
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <Navbar />
-      <div className="w-full m-3 max-w-sm flex flex-col p-8 gap-5 rounded-2xl bg-white dark:bg-zinc-900 shadow-md">
-        <h1 className="text-lg font-bold pb-5 text-start">| MyEmployee |</h1>
-        <div className="w-full flex gap-5">
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="m-3 flex w-full max-w-sm flex-col gap-5 rounded-2xl bg-white p-8 shadow-md dark:bg-zinc-900">
+        <Header />
+        <div className="flex w-full items-center gap-3">
           <Avatar
-            className="w-28 h-28 text-large"
+            className="h-28 w-28 min-w-28 text-large"
             name={data.firstName}
             src={data?.photoURL}
           />
@@ -66,7 +66,7 @@ export const EmployeeDetails = () => {
             <h2 className="text-lg font-medium">{data.jobTitle}</h2>
           </div>
         </div>
-        <div className="flex flex-col gap-3 w-full">
+        <div className="flex w-full flex-col gap-3">
           <div>
             <p className="font-semibold">Birthdate:</p>
             <p>{format(data.birthdate, "MM/dd/yyyy")}</p>
@@ -79,25 +79,20 @@ export const EmployeeDetails = () => {
             <p className="font-semibold">Addresses:</p>
             {data.addresses.map((address) => (
               <li key={address.id} className="flex w-full gap-2 align-middle">
-                <Chip color={getChipColor(address.type)} size="sm">
+                <Chip
+                  className="min-w-[55px] text-center"
+                  color={getChipColor(address.type)}
+                  size="sm"
+                >
                   {address.type}
                 </Chip>
                 <span>|</span>
-                <p className="items-center flex">{address.address}</p>
+                <p className="flex items-center">{address.address}</p>
               </li>
             ))}
           </ul>
         </div>
-        <div className="w-full flex gap-2">
-          <Button
-            className="w-full"
-            color="secondary"
-            type="button"
-            onClick={handleEdit}
-          >
-            <UserRoundPen size={16} />
-            Edit Details
-          </Button>
+        <div className="flex w-full gap-2">
           <Button
             className="w-full"
             color="secondary"
@@ -108,8 +103,18 @@ export const EmployeeDetails = () => {
             <LogOut size={16} />
             Logout
           </Button>
+          <Button
+            className="w-full"
+            color="secondary"
+            type="button"
+            onClick={handleEdit}
+          >
+            <UserRoundPen size={16} />
+            Edit Details
+          </Button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

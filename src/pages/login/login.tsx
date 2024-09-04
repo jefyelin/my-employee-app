@@ -20,7 +20,7 @@ export const LoginPage = () => {
 
   return (
     <LoginLayout>
-      <div className="w-full px-2 md:px-0 md:grid md:grid-flow-col">
+      <div className="w-full px-2 md:grid md:grid-flow-col md:px-0">
         <Image
           alt="Group of diverse colleagues in a meeting, smiling and shaking hands."
           className="hidden rounded-l-2xl rounded-r-none md:flex"

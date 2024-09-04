@@ -1,26 +1,14 @@
-import { http, HttpResponse, delay } from "msw";
+import { delay, http, HttpResponse } from "msw";
+
+import { employees } from "./data";
+
+import { EmployeeDetails } from "@/stores/useEmployeeDetailsStore";
 
 export const handlers = [
-  http.get("/api/employees", () => {
-    return HttpResponse.json(
-      [
-        {
-          id: 1,
-          firstName: "John",
-          lastName: "Doe",
-          jobTitle: "Software Engineer",
-          startDate: "2022-01-01",
-        },
-        {
-          id: 2,
-          firstName: "Jane",
-          lastName: "Smith",
-          jobTitle: "Product Manager",
-          startDate: "2021-06-15",
-        },
-      ],
-      { status: 200 }
-    );
+  http.get("/api/employees", async () => {
+    await delay(1000);
+
+    return HttpResponse.json(employees, { status: 200 });
   }),
   http.post("/api/login", async ({ request }) => {
     await delay(1000);
@@ -42,47 +30,57 @@ export const handlers = [
       );
     }
 
-    if (username === "employee" && password === "employee123") {
-      return HttpResponse.json(
-        {
-          user: {
-            id: "2",
-            type: "employee",
-          },
-          employeeDetails: {
-            firstName: "John",
-            lastName: "Doe",
-            birthdate: new Date("1990-01-01"),
-            jobTitle: "Software Engineer",
-            startDate: new Date("2022-01-01"),
-            photoURL:
-              "https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
-            addresses: [
-              {
-                id: "1",
-                type: "home",
-                address: "1234 Elm St.",
-              },
-              {
-                id: "2",
-                type: "mailing",
-                address: "5678 Oak St.",
-              },
-              {
-                id: "3",
-                type: "custom",
-                address: "91011 Pine St.",
-              },
-            ],
-          },
-        },
-        { status: 200 }
-      );
+    const employeePrefix = "employee";
+    const expectedPassword = "employee123";
+    const errorResponse = HttpResponse.json(
+      { message: "Invalid username or password" },
+      { status: 401 }
+    );
+
+    if (!username.includes(employeePrefix)) {
+      return errorResponse;
+    }
+
+    const employeeNumber = parseInt(username.replace(employeePrefix, ""));
+    const isEmployeeNumberValid = employeeNumber >= 1 && employeeNumber <= 20;
+
+    if (!isEmployeeNumberValid || password !== expectedPassword) {
+      return errorResponse;
     }
 
     return HttpResponse.json(
-      { message: "Invalid username or password" },
-      { status: 401 }
+      {
+        user: {
+          id: employeeNumber.toString(),
+          type: "employee",
+        },
+        employeeDetails: employees[employeeNumber - 1],
+      },
+      { status: 200 }
+    );
+  }),
+  http.put("/api/employees/:id", async ({ params, request }) => {
+    await delay(1000);
+
+    const newEmployData = (await request.json()) as Omit<EmployeeDetails, "id">;
+
+    const employee = employees.find((employee) => employee.id === params.id);
+
+    if (!employee) {
+      return HttpResponse.json(
+        { message: "Invalid username or password" },
+        { status: 401 }
+      );
+    }
+
+    employees[employees.indexOf(employee)] = {
+      ...newEmployData,
+      id: params.id as string,
+    };
+
+    return HttpResponse.json(
+      { message: "Employee updated successfully" },
+      { status: 200 }
     );
   }),
 ];

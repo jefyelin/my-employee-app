@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 interface LoginLayoutProps {
   children: React.ReactNode;
@@ -6,15 +6,10 @@ interface LoginLayoutProps {
 
 export const LoginLayout = ({ children }: LoginLayoutProps) => {
   return (
-    <div className="relative flex flex-col h-screen align-middle justify-center">
-      <Navbar />
-      <main className="container mx-auto max-w-8xl">{children}</main>
-      <footer className="w-full flex items-center justify-center py-3 absolute bottom-0">
-        <div className="flex items-center gap-1 text-current">
-          <span className="text-default-600">Developed by</span>
-          <p className="text-primary">Jean Arruda</p>
-        </div>
-      </footer>
+    <div className="relative flex h-screen flex-col justify-center align-middle">
+      {/* <Navbar /> */}
+      <main className="max-w-8xl container mx-auto">{children}</main>
+      <Footer />
     </div>
   );
 };

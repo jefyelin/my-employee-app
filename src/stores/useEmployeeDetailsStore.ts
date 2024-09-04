@@ -7,6 +7,7 @@ interface Addresses {
 }
 
 export interface EmployeeDetails {
+  id: string;
   firstName: string;
   lastName: string;
   jobTitle: string;

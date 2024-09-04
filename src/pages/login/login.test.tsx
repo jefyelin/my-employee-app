@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 
 import { LoginPage } from "./login";
 
@@ -38,7 +38,7 @@ describe("LoginPage", () => {
       })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "MyEmployee" })
+      screen.getByRole("heading", { name: "| MyEmployee |" })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Nice to see you again" })
@@ -46,6 +46,8 @@ describe("LoginPage", () => {
     expect(screen.getByLabelText("Username")).toBeInTheDocument();
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Login" })).toBeInTheDocument();
+    expect(screen.getByText("Developed by")).toBeInTheDocument();
+    expect(screen.getByText("Jean Arruda")).toBeInTheDocument();
   });
 
   it("should submit the form", async () => {

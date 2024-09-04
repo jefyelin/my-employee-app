@@ -1,10 +1,10 @@
-import { FC, useState, useEffect } from "react";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { SwitchProps, useSwitch } from "@nextui-org/switch";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
 import clsx from "clsx";
+import { Moon, Sun } from "lucide-react";
+import { FC, useEffect, useState } from "react";
 
 import { useTheme } from "@/hooks/use-theme";
-import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -38,13 +38,13 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   }, [isMounted]);
 
   // Prevent Hydration Mismatch
-  if (!isMounted) return <div className="w-6 h-6" />;
+  if (!isMounted) return <div className="h-6 w-6" />;
 
   return (
     <Component
       {...getBaseProps({
         className: clsx(
-          "px-px transition-opacity hover:opacity-80 cursor-pointer",
+          "cursor-pointer px-px transition-opacity hover:opacity-80",
           className,
           classNames?.base
         ),
@@ -58,7 +58,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
         className={slots.wrapper({
           class: clsx(
             [
-              "w-auto h-auto",
+              "h-auto w-auto",
               "bg-transparent",
               "rounded-lg",
               "flex items-center justify-center",
@@ -73,9 +73,9 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
         })}
       >
         {isSelected ? (
-          <MoonFilledIcon size={22} />
+          <Moon data-testid="theme-moon" size={22} />
         ) : (
-          <SunFilledIcon size={22} />
+          <Sun data-testid="theme-sun" size={22} />
         )}
       </div>
     </Component>
