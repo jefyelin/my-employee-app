@@ -11,6 +11,9 @@ import {
 } from "@nextui-org/table";
 import { format } from "date-fns";
 import { useEffect, useMemo, useState } from "react";
+import { Button } from "@nextui-org/button";
+import { LogOut, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { useEmployeesQuery } from "./hooks/useEmployeesQuery";
 
@@ -21,9 +24,6 @@ import {
   EmployeeDetails,
   useEmployeeDetailsStore,
 } from "@/stores/useEmployeeDetailsStore";
-import { Button } from "@nextui-org/button";
-import { LogOut, Plus } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 export const EmployeeList = () => {
   const { type, clearUser } = useUserStore();
@@ -115,9 +115,9 @@ export const EmployeeList = () => {
           <h2 className="text-lg font-semibold">Employees</h2>
           <Button
             color="secondary"
+            size="sm"
             type="button"
             variant="bordered"
-            size="sm"
             onClick={handleLogout}
           >
             <LogOut size={16} />
@@ -177,8 +177,8 @@ export const EmployeeList = () => {
           >
             {(item) => (
               <TableRow
-                className="cursor-pointer"
                 key={item.id}
+                className="cursor-pointer"
                 onClick={() => {
                   handleClickItem(item);
                 }}

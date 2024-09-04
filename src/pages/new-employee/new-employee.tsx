@@ -11,13 +11,14 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
+import { useCreateEmployee } from "./hooks/useCreateEmployee";
+
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Input } from "@/components/input";
 import { SubmitButton } from "@/components/submit-button";
 import { useUserStore } from "@/stores";
 import { useEmployeeDetailsStore } from "@/stores/useEmployeeDetailsStore";
-import { useCreateEmployee } from "./hooks/useCreateEmployee";
 
 export const newUserSchema = z.object({
   id: z.string(),
@@ -90,10 +91,6 @@ export const NewEmployeePage = () => {
   const invalidDateMessage = "Please enter a valid date.";
 
   useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
-  useEffect(() => {
     if (userType !== "admin") {
       navigate("/");
     }
@@ -136,14 +133,14 @@ export const NewEmployeePage = () => {
               render={({ field }) => (
                 <DateInput
                   {...field}
-                  label="Birthdate"
-                  maxValue={today(getLocalTimeZone())}
-                  isInvalid={Boolean(errors.birthdate)}
                   errorMessage={(value) => {
                     if (value.isInvalid || value.validationDetails) {
                       return invalidDateMessage;
                     }
                   }}
+                  isInvalid={Boolean(errors.birthdate)}
+                  label="Birthdate"
+                  maxValue={today(getLocalTimeZone())}
                   size="sm"
                 />
               )}
@@ -154,14 +151,14 @@ export const NewEmployeePage = () => {
               render={({ field }) => (
                 <DateInput
                   {...field}
-                  label="StartDate"
-                  maxValue={today(getLocalTimeZone())}
-                  isInvalid={Boolean(errors.startDate)}
                   errorMessage={(value) => {
                     if (value.isInvalid || value.validationDetails) {
                       return invalidDateMessage;
                     }
                   }}
+                  isInvalid={Boolean(errors.startDate)}
+                  label="StartDate"
+                  maxValue={today(getLocalTimeZone())}
                   size="sm"
                 />
               )}
