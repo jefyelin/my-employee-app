@@ -1,1 +1,1 @@
-export { EmployeeDetailsPage as EmployeeDetails } from "./employee-details";
+export { EmployeeDetailsPage } from "./employee-details";

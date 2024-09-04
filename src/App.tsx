@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 
 import { EmployeeDetailsPageEdit } from "./pages/employee-details/edit";
 
-import { EmployeeDetailsPage } from "@/pages/employee-details/employee-details";
+import { EmployeeDetailsPage } from "@/pages/employee-details";
 import { EmployeeList } from "@/pages/employee-list";
 import { LoginPage } from "@/pages/login";
-import { NewEmployeePage } from "@/pages/new-employee/new-employee";
+import { NewEmployeePage } from "@/pages/new-employee";
 
 function App() {
   return (
