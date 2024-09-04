@@ -24,6 +24,20 @@ This is an employee management application built using **Vite** and **NextUI (v2
 - Node.js v22.7.0
 - npm v10.8.2
 
+## Logins
+
+### Admin
+
+Username: `admin`
+
+Password: `admin123`
+
+### Employees
+
+Username: `employee1` | `employee2` `employee3` | `employee4` | `employee5` | `employee6` | `employee7` | `employee8` | `employee9` | `employee10` | `employee11` | `employee12` | `employee13` | `employee14` | `employee15` | `employee16` | `employee17` | `employee18` | `employee19` | `employee20`
+
+Password: `employee123`
+
 ## Installation
 
 To set up the project, clone the repository and install the dependencies:
@@ -39,20 +53,6 @@ To start the development server, use the following command:
 ```bash
 npm run dev
 ```
-
-### Logins
-
-**Admin:**
-
-Username: `admin`
-
-Password: `admin123`
-
-**Employees:**
-
-Username: `employee1` | `employee2` `employee3` | `employee4` | `employee5` | `employee6` | `employee7` | `employee8` | `employee9` | `employee10` | `employee11` | `employee12` | `employee13` | `employee14` | `employee15` | `employee16` | `employee17` | `employee18` | `employee19` | `employee20`
-
-Password: `employee123`
 
 ### Building for Production
 
