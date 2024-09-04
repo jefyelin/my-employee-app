@@ -12,14 +12,14 @@ import { LoginFormWrapper } from "./components";
 import { LoginForm } from "./components/login-form";
 import { useLoginMutation } from "./hooks";
 import { useValidateLogin } from "./hooks/useValidateLogin";
-import { LoginLayout } from "./layouts/login-layout";
 import { LoginSchema } from "./schemas";
 
 import loginBackground from "@/assets/login-background.jpg";
+import { Footer } from "@/components/footer";
 
 export const LoginPage = () => {
   const { mutate, isPending, data: response, isError } = useLoginMutation();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpenChange } = useDisclosure();
 
   useValidateLogin(response);
 
@@ -29,30 +29,33 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (isError) {
-      onOpen();
+      onOpenChange();
     }
   }, [isError]);
 
   return (
-    <LoginLayout>
-      <div className="w-full px-2 md:grid md:grid-flow-col md:px-0">
-        <Image
-          alt="Group of diverse colleagues in a meeting, smiling and shaking hands."
-          className="hidden rounded-l-2xl rounded-r-none md:flex"
-          src={loginBackground}
-        />
-        <LoginFormWrapper>
-          <LoginForm isSubmitPending={isPending} onSubmit={onSubmit} />
-        </LoginFormWrapper>
-      </div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          <ModalHeader>Login Error</ModalHeader>
-          <ModalBody>
-            <p className="py-4">Invalid username or password</p>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </LoginLayout>
+    <div className="relative flex h-screen flex-col justify-center align-middle">
+      <main className="max-w-8xl container mx-auto">
+        <div className="w-full px-2 md:grid md:grid-flow-col md:px-0">
+          <Image
+            alt="Group of diverse colleagues in a meeting, smiling and shaking hands."
+            className="hidden rounded-l-2xl rounded-r-none md:flex"
+            src={loginBackground}
+          />
+          <LoginFormWrapper>
+            <LoginForm isSubmitPending={isPending} onSubmit={onSubmit} />
+          </LoginFormWrapper>
+        </div>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+          <ModalContent>
+            <ModalHeader>Login Error</ModalHeader>
+            <ModalBody>
+              <p className="py-4">Invalid username or password</p>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </main>
+      <Footer />
+    </div>
   );
 };
