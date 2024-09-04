@@ -1,4 +1,12 @@
 import { Image } from "@nextui-org/image";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/modal";
+import { useEffect } from "react";
 
 import { LoginFormWrapper } from "./components";
 import { LoginForm } from "./components/login-form";
@@ -8,14 +16,6 @@ import { LoginLayout } from "./layouts/login-layout";
 import { LoginSchema } from "./schemas";
 
 import loginBackground from "@/assets/login-background.jpg";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  useDisclosure,
-} from "@nextui-org/modal";
-import { useEffect } from "react";
 
 export const LoginPage = () => {
   const { mutate, isPending, data: response, isError } = useLoginMutation();
