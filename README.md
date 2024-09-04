@@ -42,14 +42,16 @@ npm run dev
 
 ### Logins
 
-**Admin**:
+**Admin:**
 
 Username: `admin`
+
 Password: `admin123`
 
-**Employees**
+**Employees:**
 
 Username: `employee1` | `employee2` `employee3` | `employee4` | `employee5` | `employee6` | `employee7` | `employee8` | `employee9` | `employee10` | `employee11` | `employee12` | `employee13` | `employee14` | `employee15` | `employee16` | `employee17` | `employee18` | `employee19` | `employee20`
+
 Password: `employee123`
 
 ### Building for Production
