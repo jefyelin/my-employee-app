@@ -1,50 +1,83 @@
-# Vite & NextUI Template
+# My Employee App
 
-This is a template for creating applications using Vite and NextUI (v2).
-
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/vite-template)
+This is an employee management application built using **Vite** and **NextUI (v2)**. The app streamlines managing employee data with a modern, efficient tech stack.
 
 ## Technologies Used
 
-- [Vite](https://vitejs.dev/guide/)
-- [NextUI](https://nextui.org)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Framer Motion](https://www.framer.com/motion)
+- [Vite](https://github.com/vitest-dev/vitest#readme) - Build tool for fast development
+- [Vitest](https://vitest.dev) - Unit and integration testing framework
+- [NextUI](https://nextui.org) - UI component library
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org) - Typed JavaScript for better development experience
+- [Zustand](https://github.com/pmndrs/zustand) - State management
+- [React Hook Form](https://react-hook-form.com) - Form management
+- [Zod](https://zod.dev) - Schema validation
+- [MSW (Mock Service Worker)](https://mswjs.io) - API mocking for testing
+- [TanStack Query](https://tanstack.com/query) - Data fetching and caching
+- [Axios](https://axios-http.com) - HTTP client for API calls
+- [Lucide](https://lucide.dev) - Icon library
+- [Faker](https://github.com/faker-js/faker#readme) - Data generation for testing
+- [date-fns](https://github.com/date-fns/date-fns#readme) - Date utility functions
 
-## How to Use
+## Requirements
 
-To clone the project, run the following command:
+- Node.js v22.7.0
+- npm v10.8.2
 
-```bash
-git clone https://github.com/nextui-org/vite-template.git
-```
+## Installation
 
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+To set up the project, clone the repository and install the dependencies:
 
 ```bash
 npm install
 ```
 
-### Run the development server
+### Running the Application
+
+To start the development server, use the following command:
 
 ```bash
 npm run dev
 ```
 
-### Setup pnpm (optional)
+### Building for Production
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+To build the project for production:
 
 ```bash
-public-hoist-pattern[]=*@nextui-org/*
+npm run build
 ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+### Previewing the Production Build
+
+To preview the production build:
+
+```bash
+npm run preview
+```
+
+### Linting
+
+To lint the code and automatically fix issues:
+
+```bash
+npm run lint
+```
+
+### Running Tests
+
+To run the test suite:
+
+```bash
+npm run test
+```
+
+To run the tests with a UI:
+
+```bash
+npm run test:ui
+```
 
 ## License
 
-Licensed under the [MIT license](https://github.com/nextui-org/vite-template/blob/main/LICENSE).
+This project is licensed under the [MIT license](https://github.com/nextui-org/vite-template/blob/main/LICENSE).
